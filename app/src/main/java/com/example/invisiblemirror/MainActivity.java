@@ -15,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.invisblemirror.R;
-import com.example.invisiblemirror.mover.GoogleSignInActivity;
+import com.example.invisiblemirror.mover.MoveActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_move) {
-            Intent intent = new Intent(this, GoogleSignInActivity.class);
+            Intent intent = new Intent(this, MoveActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 

@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "560607482596",
+    "firebase_url": "https://wise-resolver-208910.firebaseio.com",
+    "project_id": "wise-resolver-208910",
+    "storage_bucket": "wise-resolver-208910.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560607482596:android:30c2627d2d003453",
+        "android_client_info": {
+          "package_name": "com.example.invisiblemirror"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560607482596-mbnthvkrsgftt8i6338n13a33sar2g9o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.invisiblemirror",
+            "certificate_hash": "ea78d8ddfb477f17acf7293c5ca04bf775dbb805"
+          }
+        },
+        {
+          "client_id": "560607482596-2k3btugioe00mb7bbf57g91jtoh8hvrj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABTkrS4cFnB8vjrVCfpv5j6UsKZIwZtTQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560607482596-hkv7frot8ljmec213o26f0vfo3ssphmd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560607482596:android:57305a3d6fc09646",
+        "android_client_info": {
+          "package_name": "com.google.android.gms.fit.samples.stepcounter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560607482596-hncvjgqv0bpo1jdlcbp7j4bq8cj90c6q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.google.android.gms.fit.samples.stepcounter",
+            "certificate_hash": "ea78d8ddfb477f17acf7293c5ca04bf775dbb805"
+          }
+        },
+        {
+          "client_id": "560607482596-2k3btugioe00mb7bbf57g91jtoh8hvrj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABTkrS4cFnB8vjrVCfpv5j6UsKZIwZtTQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560607482596-hkv7frot8ljmec213o26f0vfo3ssphmd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

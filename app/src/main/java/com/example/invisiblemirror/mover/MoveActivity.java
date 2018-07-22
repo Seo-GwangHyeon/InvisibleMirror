@@ -35,8 +35,6 @@ import com.example.invisiblemirror.logger.MessageOnlyLogFilter;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
-import com.example.invisiblemirror.logger.*;
-
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.fitness.Fitness;
 import com.google.android.gms.fitness.FitnessOptions;
@@ -50,7 +48,7 @@ import com.google.android.gms.tasks.Task;
 
 
 
-public class GoogleSignInActivity extends AppCompatActivity {
+public class MoveActivity extends AppCompatActivity {
 
     public static final String TAG = "StepCounter";
     private static final int REQUEST_OAUTH_REQUEST_CODE = 0x1001;
@@ -58,7 +56,7 @@ public class GoogleSignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_google);
+        setContentView(R.layout.activity_move);
  /*   Button button=findViewById(R.id.go);
 
     button.setOnClickListener(new View.OnClickListener() {
