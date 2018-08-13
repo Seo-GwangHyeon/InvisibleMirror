@@ -10,7 +10,7 @@
     <string name="intro_text">Hi! Let\'s track daily cumulative steps. Use the menu to explore additional actions.</string>
     <string name="action_dump_subs">List Active Subscriptions</string>
     <string name="action_cancel_subs">Cancel subscriptions</string>
-        <string name="title_activity_base">BaseActivity</string>
+    <string name="title_activity_base">BaseActivity</string>
     <string name="firebase_status_fmt">Firebase User: %s</string>
     <string name="google_status_fmt">Google User: %s</string>
     <string name="signed_out">Signed Out</string>

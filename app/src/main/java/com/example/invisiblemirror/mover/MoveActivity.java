@@ -16,6 +16,9 @@ package com.example.invisiblemirror.mover;
  * limitations under the License.
  */
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -24,6 +27,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.invisblemirror.*;
@@ -35,7 +41,6 @@ import com.example.invisiblemirror.logger.MessageOnlyLogFilter;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.fitness.Fitness;
 import com.google.android.gms.fitness.FitnessOptions;
 import com.google.android.gms.fitness.data.DataSet;
@@ -46,44 +51,38 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.Calendar;
 
 
-public class MoveActivity extends AppCompatActivity {
+public class MoveActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String TAG = "StepCounter";
     private static final int REQUEST_OAUTH_REQUEST_CODE = 0x1001;
-    GoogleApiClient mClient;
+    private Button startService,endService;
+    private EditText editHour, editMinute;
+    Calendar calendar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_move);
- /*   Button button=findViewById(R.id.go);
 
-    button.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Intent intent= new Intent(MainActivity.this, GoogleSignInActivity.class);
-        startActivity(intent);
-      }
-    });*/
-
-        // This method sets up our custom logger, which will print all log messages to the device
+        startService =(Button) findViewById(R.id.start_service);
+        endService =(Button) findViewById(R.id.end_service);
+        editHour = (EditText) findViewById(R.id.edit_hour);
+        editMinute = (EditText) findViewById(R.id.edit_minute);
+        startService.setOnClickListener(this);
+       // This method sets up our custom logger, which will print all log messages to the device
         // screen, as well as to adb logcat.
         initializeLogging();
-        //  FirebaseAuth.getInstance().signOut();
+
         FitnessOptions fitnessOptions =
                 FitnessOptions.builder()
                         .addDataType(DataType.TYPE_STEP_COUNT_CUMULATIVE)
                         .addDataType(DataType.TYPE_STEP_COUNT_DELTA)
                         .build();
-        // Configure Google Sign In
-  /*  GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build();*/
-        //GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+
 
 
 
@@ -92,11 +91,11 @@ public class MoveActivity extends AppCompatActivity {
             GoogleSignIn.requestPermissions(this, REQUEST_OAUTH_REQUEST_CODE,
                     GoogleSignIn.getLastSignedInAccount(this), fitnessOptions);
 
-            Toast.makeText(this, "권한 없음", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "권한 없음", Toast.LENGTH_SHORT).show();
         } else {
             subscribe();
         }
-        //subscribe();
+
 
     }
 
@@ -132,7 +131,7 @@ public class MoveActivity extends AppCompatActivity {
      * Reads the current daily step total, computed from midnight of the current day on the device's
      * current timezone.
      */
-    private void readData() {
+    public void readData() {
         Fitness.getHistoryClient(this, GoogleSignIn.getLastSignedInAccount(this))
                 .readDailyTotal(DataType.TYPE_STEP_COUNT_DELTA)
                 .addOnSuccessListener(
@@ -140,9 +139,7 @@ public class MoveActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(DataSet dataSet) {
                                 long total =
-                                        dataSet.isEmpty()
-                                                ? 0
-                                                : dataSet.getDataPoints().get(0).getValue(Field.FIELD_STEPS).asInt();
+                                        dataSet.isEmpty() ? 0 : dataSet.getDataPoints().get(0).getValue(Field.FIELD_STEPS).asInt();
                                 Log.i(TAG, "Total steps: " + total);
                             }
                         })
@@ -154,6 +151,8 @@ public class MoveActivity extends AppCompatActivity {
                             }
                         });
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -198,5 +197,39 @@ public class MoveActivity extends AppCompatActivity {
         logView.setBackgroundColor(Color.WHITE);
         msgFilter.setNext(logView);
         Log.i(TAG, "Ready");
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id=v.getId();
+        if(id==R.id.start_service)
+        {
+            Log.d("test", "액티비티-서비스 시작버튼클릭");
+
+            calendar=Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(String.valueOf(editHour.getText())) );
+            calendar.set(Calendar.MINUTE,Integer.parseInt(String.valueOf(editMinute.getText())));
+            calendar.set(Calendar.SECOND,0);
+
+            Intent mAlarmIntent=new Intent("com.example.invisiblemirror.ALARM_START");
+            Log.d("test", String.valueOf(editHour.getText())+" : "
+                    + String.valueOf(editMinute.getText()) );
+
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0,
+                    mAlarmIntent,PendingIntent.FLAG_CANCEL_CURRENT);
+
+            AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent);
+
+            editHour.setText("");
+            editMinute.setText("");
+
+        }
+        else if(id==R.id.end_service)
+        {
+            Log.d("test", "액티비티-서비스 종료버튼클릭");
+
+
+        }
     }
 }

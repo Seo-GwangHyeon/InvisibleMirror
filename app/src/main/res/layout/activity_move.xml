@@ -28,10 +28,40 @@ limitations under the License.
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/intro_text" />
+
+    <Button
+        android:id="@+id/start_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_text_view"
+        android:text="start"
+        />
+
+    <Button
+        android:id="@+id/end_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/start_service"
+        android:text="end"
+        />
+    <EditText
+        android:id="@+id/edit_hour"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@id/end_service"
+        />
+    <EditText
+        android:id="@+id/edit_minute"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@id/edit_hour"
+        />
+
+
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/title_text_view">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_minute">
         <com.example.invisiblemirror.logger.LogView
             android:id="@+id/sample_logview"
             android:layout_width="wrap_content"

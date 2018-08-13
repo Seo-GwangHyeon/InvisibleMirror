@@ -1,6 +1,9 @@
 package com.example.invisiblemirror;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,19 +16,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.invisblemirror.R;
 import com.example.invisiblemirror.mover.MoveActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    public static SharedPreferences appData;
+    TextView textView;
+    long setSetting;
+    public static SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        textView=(TextView) findViewById(R.id.text_view);
+        appData = getSharedPreferences("appData", MODE_PRIVATE);
+        editor = appData.edit();
+        load();
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +58,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+    /*    BroadcastReceiver br;
+        br=new TestReceiver();
+        IntentFilter filter=new IntentFilter(Intent.ACTION_HEADSET_PLUG);
+        this.registerReceiver(br,filter);*/
+
     }
 
     @Override
@@ -99,4 +119,25 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    private void save() {
+        // SharedPreferences 객체만으론 저장 불가능 Editor 사용
+
+
+        // 에디터객체.put타입( 저장시킬 이름, 저장시킬 값 )
+        // 저장시킬 이름이 이미 존재하면 덮어씌움
+       // editor.putInt("setSetting", );
+
+        // apply, commit 을 안하면 변경된 내용이 저장되지 않음
+    //    editor.apply();
+    }
+
+    // 설정값을 불러오는 함수
+    private void load() {
+        // SharedPreferences 객체.get타입( 저장된 이름, 기본값 )
+        // 저장된 이름이 존재하지 않을 시 기본값
+        setSetting = appData.getLong("setSetting", (long)-1);
+        textView.setText(String.valueOf(setSetting));
+    }
+
+
 }

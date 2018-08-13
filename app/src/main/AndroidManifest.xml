@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.invisblemirror">
 
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,19 +14,30 @@
         <activity
             android:name="com.example.invisiblemirror.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name="com.example.invisiblemirror.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name="com.example.invisiblemirror.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name="com.example.invisiblemirror.mover.MoveActivity" />
 
+        <receiver
+            android:name="com.example.invisiblemirror.TestReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.invisiblemirror.ALARM_START" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.example.invisiblemirror.mover.AlarmSoundService"
+            android:enabled="true"
+            ></service>
     </application>
 
 </manifest>
