@@ -3,6 +3,9 @@
     package="com.example.invisblemirror">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.READ_USER_DICTIONARY" />
+    <uses-permission android:name="android.permission.WRITE_USER_DICTIONARY" />
 
     <application
         android:allowBackup="true"
@@ -38,6 +41,20 @@
             android:name="com.example.invisiblemirror.mover.AlarmSoundService"
             android:enabled="true"
             ></service>
+        <service android:name="com.example.invisiblemirror.keyboard.inputmethod.SoftKeyboard"
+            android:permission="android.permission.BIND_INPUT_METHOD">
+            <intent-filter>
+                <action android:name="android.view.InputMethod" />
+            </intent-filter>
+            <meta-data android:name="android.view.im" android:resource="@xml/method" />
+        </service>
+
+        <activity android:name="com.example.invisiblemirror.keyboard.inputmethod.KeyboardSettings" android:label="@string/english_ime_settings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
