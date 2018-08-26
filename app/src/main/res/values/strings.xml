@@ -105,78 +105,78 @@
     <string name="vibrate_on_keypress">Vibrate on keypress</string>
     <!-- Option to play back sound on keypress in soft keyboard -->
     <string name="sound_on_keypress">Sound on keypress</string>
-    
+
     <!-- Option to enable using nearby keys when correcting/predicting -->
     <string name="hit_correction">Correct typing errors</string>
-    
+
     <!-- Description for hit_correction  -->
     <string name="hit_correction_summary">Enable input error correction</string>
-    
+
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
     <string name="hit_correction_land">Landscape input errors</string>
-    
+
     <!-- Description for hit_correction in landscape -->
     <string name="hit_correction_land_summary">Enable input error correction</string>
-    
+
     <!-- Option to automatically correct word on hitting space -->
-    <string name="auto_correction">Word suggestions</string> 
-    
+    <string name="auto_correction">Word suggestions</string>
+
     <!-- Description for auto_correction -->
     <string name="auto_correction_summary">Automatically correct the previous word</string>
-	
+
     <!-- Option to enable text prediction -->
     <string name="prediction">Word suggestions</string>
     <!-- Category title for text prediction -->
     <string name="prediction_category">Word suggestion settings</string>
     <!-- Description for text prediction -->
     <string name="prediction_summary">Enable auto completion while typing</string>
-	
+
     <!-- Dialog title for auto complete choices -->
     <string name="auto_complete_dialog_title">Auto completion</string>
-    
+
     <!-- Option to enable text prediction in landscape -->
-    <string name="prediction_landscape">Increase text field size</string> 
+    <string name="prediction_landscape">Increase text field size</string>
     <!-- Description for text prediction -->
     <string name="prediction_landscape_summary">Hide word suggestions in landscape view</string>
-	
+
     <!-- Option to enable auto capitalization of sentences -->
-    <string name="auto_cap">Auto-capitalization</string> 
+    <string name="auto_cap">Auto-capitalization</string>
     <string name="select_skin">"Select Skin"</string>
     <!-- Description for auto cap -->
     <string name="auto_cap_summary">Capitalize the start of a sentence</string>
     <!-- Option to enable auto punctuate -->
-    <string name="auto_punctuate">Auto-punctuate</string> 
+    <string name="auto_punctuate">Auto-punctuate</string>
     <!-- Description for auto punctuate -->
     <string name="auto_punctuate_summary"></string>
-    
+
     <!-- Option to enable quick fixes -->
     <string name="quick_fixes">Quick fixes</string>
     <!-- Description for quick fixes -->
     <string name="quick_fixes_summary">Corrects commonly typed mistakes</string>
-    
+
     <!-- Option to enable showing suggestions -->
     <string name="show_suggestions">Show suggestions</string>
     <!-- Description for show suggestions -->
     <string name="show_suggestions_summary">Display suggested words while typing</string>
-    
+
     <!-- Option to enable auto completion -->
     <string name="auto_complete">Auto-complete</string>
     <!-- Description for auto completion -->
     <string name="auto_complete_summary">Spacebar and punctuation automatically insert highlighted word</string>
-    
+
     <!-- Array of prediction modes -->
     <string-array name="prediction_modes">
         <item>None</item>
         <item>Basic</item>
         <item>Advanced</item>
     </string-array>
-    
+
     <!-- Don't translate -->
-    <string name="prediction_none" >0</string>
+    <string name="prediction_none">0</string>
     <!-- Don't translate -->
     <string name="prediction_basic">1</string>
     <!-- Don't translate -->
-    <string name="prediction_full" >2</string>
+    <string name="prediction_full">2</string>
 
     <string-array name="prediction_modes_values">
         <item>@string/prediction_none</item>
@@ -206,43 +206,43 @@
     <string name="alternates_for_y">ýÿ</string>
     <!-- Accented forms of "z" -->
     <string name="alternates_for_z"></string>
-    
+
     <!-- Tip to long press on keys -->
     <string name="tip_long_press">Hold a key down to see accents (ø, ö, etc.)</string>
     <!-- Tip to dismiss keyboard -->
     <string name="tip_dismiss">Press the back key \u21B6 to close the keyboard at any point</string>
     <!-- Tip to press ?123 to access numbers and symbols -->
-    <string name="tip_access_symbols">Access numbers and symbols</string>    
+    <string name="tip_access_symbols">Access numbers and symbols</string>
     <!-- Tip to long press on typed word to add to dictionary -->
     <string name="tip_add_to_dictionary">Press and hold the left-most word to add it to the dictionary
         </string>
-        
+
     <!-- Instruction to touch the bubble to continue -->
     <string name="touch_to_continue">Touch this hint to continue »</string>
-    
+
     <!-- Instruction to touch the bubble to start typing -->
     <string name="touch_to_finish">Touch here to close this hint and start typing!</string>
-    
+
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
     <string name="tip_to_open_keyboard"><b>The keyboard opens any time you touch a text field</b></string>
-    
+
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
     <string name="tip_to_view_accents"><b>Touch &amp; hold a key to view accents\n(ø, ö, ô, ó, and so on)</b>
     </string>
-    
+
     <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
     <string name="tip_to_open_symbols"><b>Switch to numbers and symbols by touching this key</b></string>
-    
+
     <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
     <string name="tip_to_close_symbols"><b>Go back to letters by touching this key again</b></string>
-    
+
     <!-- Tutorial tip 5 - How to launch keyboard settings -->
     <string name="tip_to_launch_settings"><b>Touch &amp; hold this key to change keyboard settings, like auto complete</b></string>
-    
+
     <!-- Tutorial tip 6 - Done with the tutorial -->
     <string name="tip_to_start_typing"><b>Try it!</b></string>
-    
-    
+
+
     <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
     <string name="label_go_key">Go</string>
     <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
@@ -260,7 +260,7 @@
     <string name="label_hangul_key">"Han"</string>
     <!-- Label for ALT modifier key.  Must be short to fit on key! -->
     <string name="label_alt_key">ALT</string>
-    <string name="inputMethod">Input Method</string> 
+    <string name="inputMethod">Input Method</string>
     <string-array name="pref_skin_choices">
         <item>"Default skin"</item>
         <item>"Custom skin"</item>

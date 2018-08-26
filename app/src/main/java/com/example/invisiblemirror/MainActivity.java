@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.invisblemirror.R;
+import com.example.invisiblemirror.keycounter.KeyCheckActivity;
 import com.example.invisiblemirror.mover.MoveActivity;
 
 public class MainActivity extends AppCompatActivity
@@ -108,7 +109,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, MoveActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-
+            Intent intent = new Intent(this, KeyCheckActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {

