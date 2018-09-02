@@ -102,7 +102,7 @@ public class SoftKeyboard extends InputMethodService
     // Contextual menu positions
     private static final int POS_SETTINGS = 0;
     private static final int POS_METHOD = 1;
-    
+    //단어 추천 없애기
     private LatinKeyboardView mInputView;
     private List<LatinKeyboardView> mInputViewList;
     private CandidateViewContainer mCandidateViewContainer;
