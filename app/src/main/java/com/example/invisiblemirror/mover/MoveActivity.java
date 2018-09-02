@@ -83,20 +83,13 @@ public class MoveActivity extends AppCompatActivity implements View.OnClickListe
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
 
-
-
-
         if (!GoogleSignIn.hasPermissions(account, fitnessOptions) )
         {
             GoogleSignIn.requestPermissions(this, REQUEST_OAUTH_REQUEST_CODE,
                     GoogleSignIn.getLastSignedInAccount(this), fitnessOptions);
-
-            //Toast.makeText(this, "권한 없음", Toast.LENGTH_SHORT).show();
         } else {
             subscribe();
         }
-
-
     }
 
     @Override

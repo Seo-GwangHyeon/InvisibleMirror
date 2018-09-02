@@ -491,9 +491,7 @@ public class CandidateView extends View {
     
     private void longPressFirstWord() {
         CharSequence word = mSuggestions.get(0);
-        if (mService.addWordToDictionary(word.toString())) {
-            showPreview(0, getContext().getResources().getString(R.string.added_word, word));
-        }
+
     }
     
     @Override

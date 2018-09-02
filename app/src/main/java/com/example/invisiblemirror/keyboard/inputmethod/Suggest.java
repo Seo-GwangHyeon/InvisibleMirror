@@ -1,18 +1,19 @@
 /*
  * Copyright (C) 2008-2009 Google Inc.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
- */
+ *//*
+
 
 package com.example.invisiblemirror.keyboard.inputmethod;
 
@@ -30,23 +31,25 @@ import com.example.invisiblemirror.keyboard.latin.Dictionary;
 import com.example.invisiblemirror.keyboard.latin.UserDictionary;
 //import com.android.inputmethod.latin.Dictionary.WordCallback;
 
+*/
 /**
- * This class loads a dictionary and provides a list of suggestions for a given sequence of 
+ * This class loads a dictionary and provides a list of suggestions for a given sequence of
  * characters. This includes corrections and completions.
  * @hide pending API Council Approval
- */
+ *//*
+
 public class Suggest implements Dictionary.WordCallback {
 
     public static final int CORRECTION_NONE = 0;
     public static final int CORRECTION_BASIC = 1;
     public static final int CORRECTION_FULL = 2;
-    
+
     private Dictionary mMainDict;
-    
+
     private Dictionary mUserDictionary;
-    
+
     private int mPrefMaxSuggestions = 12;
-    
+
     private int[] mPriorities = new int[mPrefMaxSuggestions];
     private List<CharSequence> mSuggestions = new ArrayList<CharSequence>();
     private boolean mIncludeTypedWordIfValid;
@@ -67,29 +70,33 @@ public class Suggest implements Dictionary.WordCallback {
             mStringPool.add(sb);
         }
     }
-    
+
     public int getCorrectionMode() {
         return mCorrectionMode;
     }
-    
+
     public void setCorrectionMode(int mode) {
         mCorrectionMode = mode;
     }
 
-    /**
+    */
+/**
      * Sets an optional user dictionary resource to be loaded. The user dictionary is consulted
      * before the main dictionary, if set.
-     */
+     *//*
+
     public void setUserDictionary(Dictionary userDictionary) {
         mUserDictionary = userDictionary;
     }
 
-    /**
+    */
+/**
      * Number of suggestions to generate from the input key sequence. This has
      * to be a number between 1 and 100 (inclusive).
      * @param maxSuggestions
      * @throws IllegalArgumentException if the number is out of range
-     */
+     *//*
+
     public void setMaxSuggestions(int maxSuggestions) {
         if (maxSuggestions < 1 || maxSuggestions > 100) {
             throw new IllegalArgumentException("maxSuggestions must be between 1 and 100");
@@ -102,13 +109,13 @@ public class Suggest implements Dictionary.WordCallback {
             mStringPool.add(sb);
         }
     }
-    
+
     private boolean haveSufficientCommonality(String original, CharSequence suggestion) {
         final int len = Math.min(original.length(), suggestion.length());
         if (len <= 2) return true;
         int matching = 0;
         for (int i = 0; i < len; i++) {
-            if (UserDictionary.toLowerCase(original.charAt(i)) 
+            if (UserDictionary.toLowerCase(original.charAt(i))
                     == UserDictionary.toLowerCase(suggestion.charAt(i))) {
                 matching++;
             }
@@ -119,22 +126,24 @@ public class Suggest implements Dictionary.WordCallback {
             return matching > len / 2;
         }
     }
-    
-    /**
+
+    */
+/**
      * Returns a list of words that match the list of character codes passed in.
      * This list will be overwritten the next time this function is called.
 
-     * in order of probability where the character at index 0 in the array has the highest 
-     * probability. 
+     * in order of probability where the character at index 0 in the array has the highest
+     * probability.
      * @return list of suggestions.
-     */
-    public List<CharSequence> getSuggestions(View view, WordComposer wordComposer, 
+     *//*
+
+    public List<CharSequence> getSuggestions(View view, WordComposer wordComposer,
             boolean includeTypedWordIfValid) {
         mHaveCorrection = false;
         collectGarbage();
         Arrays.fill(mPriorities, 0);
         mIncludeTypedWordIfValid = includeTypedWordIfValid;
-        
+
         // Save a lowercase version of the original word
         mOriginalWord = wordComposer.getTypedWord();
         if (mOriginalWord != null) {
@@ -163,14 +172,14 @@ public class Suggest implements Dictionary.WordCallback {
             //Log.v("##", "[" + 0 + "], " + HangulAutomata.encodingString(str));
         	mSuggestions.add(0, HangulAutomata.encode(str));
         }
-        
+
         // Check if the first suggestion has a minimum number of characters in common
         if (mCorrectionMode == CORRECTION_FULL && mSuggestions.size() > 1) {
             if (!haveSufficientCommonality(mLowerOriginalWord, mSuggestions.get(1))) {
                 mHaveCorrection = false;
             }
         }
-        
+
         int i = 0;
         int max = 6;
         // Don't autotext the suggestions from the dictionaries
@@ -194,7 +203,7 @@ public class Suggest implements Dictionary.WordCallback {
             }
             i++;
         }
-        
+
         return mSuggestions;
     }
 
@@ -202,7 +211,7 @@ public class Suggest implements Dictionary.WordCallback {
         return mHaveCorrection;
     }
 
-    private boolean compareCaseInsensitive(final String mLowerOriginalWord, 
+    private boolean compareCaseInsensitive(final String mLowerOriginalWord,
             final char[] word, final int offset, final int length) {
         final int originalLength = mLowerOriginalWord.length();
         if (originalLength == length && Character.isUpperCase(word[offset])) {
@@ -235,7 +244,7 @@ public class Suggest implements Dictionary.WordCallback {
                 pos++;
             }
         }
-        
+
         if (pos >= prefMaxSuggestions) {
             return true;
         }
@@ -243,7 +252,7 @@ public class Suggest implements Dictionary.WordCallback {
                 prefMaxSuggestions - pos - 1);
         priorities[pos] = freq;
         int poolSize = mStringPool.size();
-        StringBuilder sb = poolSize > 0 ? (StringBuilder) mStringPool.remove(poolSize - 1) 
+        StringBuilder sb = poolSize > 0 ? (StringBuilder) mStringPool.remove(poolSize - 1)
                 : new StringBuilder(32);
         sb.setLength(0);
         sb.append(word, offset, length);
@@ -251,7 +260,7 @@ public class Suggest implements Dictionary.WordCallback {
         String str = HangulAutomata.encode(sb.toString());
         //Log.v("##", "[" + pos + "], " + HangulAutomata.encodingString(str));
         mSuggestions.add(pos, str);
-        
+
         if (mSuggestions.size() > prefMaxSuggestions) {
             CharSequence garbage = mSuggestions.remove(prefMaxSuggestions);
             if (garbage instanceof StringBuilder) {
@@ -265,11 +274,11 @@ public class Suggest implements Dictionary.WordCallback {
         if (word == null || word.length() == 0) {
             return false;
         }
-        return (mCorrectionMode == CORRECTION_FULL && mMainDict.isValidWord(word)) 
-                || (mCorrectionMode > CORRECTION_NONE && 
+        return (mCorrectionMode == CORRECTION_FULL && mMainDict.isValidWord(word))
+                || (mCorrectionMode > CORRECTION_NONE &&
                     (mUserDictionary != null && mUserDictionary.isValidWord(word)));
     }
-    
+
     private void collectGarbage() {
         int poolSize = mStringPool.size();
         int garbageSize = mSuggestions.size();
@@ -287,3 +296,4 @@ public class Suggest implements Dictionary.WordCallback {
         mSuggestions.clear();
     }
 }
+*/

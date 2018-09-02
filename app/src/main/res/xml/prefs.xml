@@ -70,7 +70,7 @@
             android:key="auto_complete"
             android:title="@string/auto_complete"
             android:summary="@string/auto_complete_summary"
-            android:persistent="true" 
+            android:persistent="true"
             android:defaultValue="true"
             android:dependency="show_suggestions"
             />

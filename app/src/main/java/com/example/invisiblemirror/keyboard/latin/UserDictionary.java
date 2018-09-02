@@ -12,7 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *//*
+
 
 package com.example.invisiblemirror.keyboard.latin;
 
@@ -92,14 +93,16 @@ public class UserDictionary extends Dictionary {
 
     }
 
-    /**
+    */
+/**
      * Adds a word to the dictionary and makes it persistent.
      * @param word the word to add. If the word is capitalized, then the dictionary will
      * recognize it as a capitalized word when searched.
      * @param frequency the frequency of occurrence of the word. A frequency of 255 is considered
      * the highest.
      * @TODO use a higher or float range for frequency
-     */
+     *//*
+
     //@T
     public synchronized void addWord(String word, int frequency) {
         if (mRequiresReload) loadDictionary();
@@ -157,7 +160,8 @@ public class UserDictionary extends Dictionary {
         return c;
     }
 
-    /**
+    */
+/**
      * Recursively traverse the tree for words that match the input. Input consists of
      * a list of arrays. Each item in the list is one input character position. An input
      * character is actually an array of multiple possible candidates. This function is not
@@ -175,7 +179,8 @@ public class UserDictionary extends Dictionary {
      * "wouldve", it could be matching "would've", so the depth will be one more than the
      * inputIndex
      * @param callback the callback class for adding a word
-     */
+     *//*
+
     private void getWordsRec(List<Node> roots, final WordComposer codes, final char[] word, 
             final int depth, boolean completion, float snr, int inputIndex,
             WordCallback callback) {
@@ -303,12 +308,14 @@ public class UserDictionary extends Dictionary {
         addWordRec(childNode.children, word, depth + 1, frequency);
     }
 
-    /**
+    */
+/**
      * Table mapping most combined Latin, Greek, and Cyrillic characters
      * to their base characters.  If c is in range, BASE_CHARS[c] == c
      * if c is not a combined character, or the base character if it
      * is combined.
-     */
+     *//*
+
     static final char BASE_CHARS[] = {
         0x0000, 0x0001, 0x0002, 0x0003, 0x0004, 0x0005, 0x0006, 0x0007, 
         0x0008, 0x0009, 0x000a, 0x000b, 0x000c, 0x000d, 0x000e, 0x000f, 
@@ -477,3 +484,4 @@ public class UserDictionary extends Dictionary {
     // cat UnicodeData.txt | perl -e 'while (<>) { @foo = split(/;/); $foo[5] =~ s/<.*> //; $base[hex($foo[0])] = hex($foo[5]);} for ($i = 0; $i < 0x500; $i += 8) { for ($j = $i; $j < $i + 8; $j++) { printf("0x%04x, ", $base[$j] ? $base[$j] : $j)}; print "\n"; }'
 
 }
+*/

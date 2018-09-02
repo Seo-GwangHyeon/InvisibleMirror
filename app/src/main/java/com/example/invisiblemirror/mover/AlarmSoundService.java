@@ -15,7 +15,7 @@ import com.google.android.gms.fitness.data.Field;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-import static com.example.invisiblemirror.MainActivity.editor;
+import static com.example.invisiblemirror.keyboard.inputmethod.SoftKeyboard.editor;
 
 public class AlarmSoundService extends Service {
 
@@ -46,7 +46,7 @@ public class AlarmSoundService extends Service {
                                 long total =
                                         dataSet.isEmpty() ? 0 : dataSet.getDataPoints().get(0).getValue(Field.FIELD_STEPS).asInt();
                                 Log.i(TAG, "Total steps: " + total);
-                                /**정환이 봐라: total이 걸음 수*/
+                                /** total이 걸음 수*/
                                 editor.putLong("setSetting",total);
                                 editor.apply();
                             }

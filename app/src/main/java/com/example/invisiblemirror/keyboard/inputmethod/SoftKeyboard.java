@@ -28,12 +28,15 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
@@ -62,7 +65,7 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.example.invisiblemirror.keyboard.latin.UserDictionary;
+import com.example.invisiblemirror.database.DBHelper;
 import com.example.invisblemirror.R;
 
 /**
@@ -108,7 +111,7 @@ public class SoftKeyboard extends InputMethodService
     
     private AlertDialog mOptionsDialog;
     KeyboardSwitcher mKeyboardSwitcher;
-    private UserDictionary mUserDictionary;
+
     private String mLocale;
 
     private StringBuilder mComposing = new StringBuilder();
@@ -148,9 +151,17 @@ public class SoftKeyboard extends InputMethodService
 
     private String mWordSeparators;
     private String mSentenceSeparators;
-    
+
     HangulAutomata mHangulAutomata = new HangulAutomata();
-    
+
+    /**데이터베이스*/
+    private DBHelper helper;
+    private SQLiteDatabase db;
+
+    public static SharedPreferences appData;
+    public static SharedPreferences.Editor editor;
+
+
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         @Override
@@ -173,7 +184,7 @@ public class SoftKeyboard extends InputMethodService
             }
         }
     };
-/** @TODO 일단 찾았는데 뭐가 뭔지 알아야함 Gwang log 참고하자*/
+/**  일단 찾았는데 뭐가 뭔지 알아야함  참고하자*/
     @Override public void onCreate() {
         super.onCreate();
         //setStatusIcon(R.drawable.ime_qwerty);
@@ -187,40 +198,26 @@ public class SoftKeyboard extends InputMethodService
         registerReceiver(mReceiver, filter);
         
         mInputViewList = new ArrayList<LatinKeyboardView>(2);
-/*
-        int i;
-        Log.v(PRJ_NAME, "??초성");
-        for(i = 0x1113; i < 0x1159; i++)
-        	printCode(i);
-        Log.v(PRJ_NAME, "??중성");
-        for(i = 0x1176; i < 0x11a2; i++)
-        	printCode(i);
-        Log.v(PRJ_NAME, "중성 글??채�?");
-        printCode(0x1160);
-        printCode(0x318d);
-        Log.v(PRJ_NAME, "??종성");
-        for(i = 0x11c3; i < 0x11f9; i++)
-      	printCode(i);
-*/
-    }
-/*
-    private void printCode(int c)
-    {
-    	String str = new String();
-    	str += (char)c;
-    	Log.v(PRJ_NAME, encodingStr(str));
-    }
-*/
+
+        appData = getSharedPreferences("appData", MODE_PRIVATE);
+        editor = appData.edit();
+
+        helper=new DBHelper(this,"user_word.db",null,1);
+        db=helper.getWritableDatabase();
+        helper.onCreate(db);
+
+
+
+}
+
     private void initSuggest(String locale) {
         mLocale = locale;
 
-        mUserDictionary = new UserDictionary(this);
         mWordSeparators = getResources().getString(R.string.word_separators);
         mSentenceSeparators = getResources().getString(R.string.sentence_separators);
     }
     
     @Override public void onDestroy() {
-        mUserDictionary.close();
         unregisterReceiver(mReceiver);
         mInputViewList.clear();
         super.onDestroy();
@@ -575,7 +572,6 @@ public class SoftKeyboard extends InputMethodService
     
     private void doubleSpace() {
         //if (!mAutoPunctuate) return;
-        if (mCorrectionMode == Suggest.CORRECTION_NONE) return;
         final InputConnection ic = getCurrentInputConnection();
         if (ic == null) return;
         CharSequence lastThree = ic.getTextBeforeCursor(3, 0);
@@ -590,10 +586,7 @@ public class SoftKeyboard extends InputMethodService
         }
     }
     
-    public boolean addWordToDictionary(String word) {
-        mUserDictionary.addWord(word, 128);
-        return true;
-    }
+
 
     private boolean isAlphabet(int code) {
         if (Character.isLetter(code)) {
@@ -602,7 +595,6 @@ public class SoftKeyboard extends InputMethodService
             return false;
         }
     }
-    
     // Implementation of KeyboardViewListener
 
     public void onKey(int primaryCode, int[] keyCodes) {
@@ -647,19 +639,7 @@ public class SoftKeyboard extends InputMethodService
                 // Cancel the just reverted state
                 mJustRevertedSeparator = null;
         }
-       /* String keypress = String.valueOf((char)primaryCode);
-        Log.d("Key Pressed",keypress);
-        try{
-            String SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath();
-            String FILENAME = "keylogger.txt";
 
-            File outfile = new File(SDCARD+File.separator+FILENAME);
-            FileOutputStream fos = new FileOutputStream(outfile,true);
-            fos.write(keypress.getBytes());
-            fos.close();
-        }catch(Exception e) {
-            Log.d("EXCEPTION",e.getMessage());
-        }*/
     }//end onKey
     
     public void onText(CharSequence text) {
@@ -1368,6 +1348,7 @@ public class SoftKeyboard extends InputMethodService
         String keypress = input+" ";
 
         try {
+            /*
             Log.d("Gwang", keypress);
             String SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath();
             String FILENAME = "kingking.txt";
@@ -1376,6 +1357,17 @@ public class SoftKeyboard extends InputMethodService
             FileOutputStream fos = new FileOutputStream(outfile, true);
             fos.write(keypress.getBytes());
             fos.close();
+            */
+            String SQL="select content from user_word where title=?";
+            String[] args = new String[] {"사용한단어"};
+            Cursor c = db.rawQuery(SQL,args);
+            c.moveToNext();
+            String content =c.getString(0);
+            Log.v("Gwang","db"+content);
+
+            ContentValues values = new ContentValues();
+            values.put("content",content+keypress );
+            db.update("user_word", values,"title=?", new String[] {"사용한단어"});
         } catch (Exception e) {
             Log.d("Gwang", e.getMessage());
         }

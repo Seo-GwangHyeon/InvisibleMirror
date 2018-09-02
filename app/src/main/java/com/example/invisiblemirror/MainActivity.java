@@ -22,12 +22,14 @@ import com.example.invisblemirror.R;
 import com.example.invisiblemirror.keycounter.KeyCheckActivity;
 import com.example.invisiblemirror.mover.MoveActivity;
 
+import static com.example.invisiblemirror.keyboard.inputmethod.SoftKeyboard.appData;
+import static com.example.invisiblemirror.keyboard.inputmethod.SoftKeyboard.editor;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    public static SharedPreferences appData;
+
     TextView textView;
     long setSetting;
-    public static SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +41,6 @@ public class MainActivity extends AppCompatActivity
         appData = getSharedPreferences("appData", MODE_PRIVATE);
         editor = appData.edit();
         load();
-
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
