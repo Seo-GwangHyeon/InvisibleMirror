@@ -105,8 +105,8 @@ public class SoftKeyboard extends InputMethodService
     //단어 추천 없애기
     private LatinKeyboardView mInputView;
     private List<LatinKeyboardView> mInputViewList;
-    private CandidateViewContainer mCandidateViewContainer;
-    private CandidateView mCandidateView;
+    //private CandidateViewContainer mCandidateViewContainer;
+    //private CandidateView mCandidateView;
     private CompletionInfo[] mCompletions;
     
     private AlertDialog mOptionsDialog;
@@ -168,7 +168,7 @@ public class SoftKeyboard extends InputMethodService
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_UPDATE_SUGGESTIONS:
-                    updateSuggestions();
+                    //updateSuggestions();
                     break;
                 case MSG_START_TUTORIAL:
                     if (mTutorial == null) {
@@ -230,7 +230,7 @@ public class SoftKeyboard extends InputMethodService
         }
         super.onConfigurationChanged(conf);
     }
-    
+    /*
     @Override
     public View onCreateCandidatesView() {
         mKeyboardSwitcher.makeKeyboards();
@@ -241,7 +241,7 @@ public class SoftKeyboard extends InputMethodService
         mCandidateView.setService(this);
         setCandidatesViewShown(true);
         return mCandidateViewContainer;
-    }
+    }*/
 
     private void loadSettings() {
         // Get the settings preferences
@@ -371,8 +371,9 @@ public class SoftKeyboard extends InputMethodService
 
         mPredicting = false;
         mDeleteCount = 0;
-        setCandidatesViewShown(false);
-        if (mCandidateView != null) mCandidateView.setSuggestions(null, false, false, false);
+        /*setCandidatesViewShown(false);
+        if (mCandidateView != null)
+            mCandidateView.setSuggestions(null, false, false, false);*/
         mInputView.setProximityCorrectionEnabled(true);
 
         mPredictionOn = mPredictionOn && mCorrectionMode > 0;
@@ -408,7 +409,7 @@ public class SoftKeyboard extends InputMethodService
         TextEntryState.endSession();
     }
 
-    @Override
+   /* @Override
     public void onDisplayCompletions(CompletionInfo[] completions) {
         if (false) {
             Log.i("foo", "Received completions:");
@@ -433,7 +434,7 @@ public class SoftKeyboard extends InputMethodService
             mBestWord = null;
             setCandidatesViewShown(isCandidateStripVisible() || mCompletionOn);
         }
-    }
+    }*/
 
     @Override
     public void setCandidatesViewShown(boolean shown) {
@@ -516,7 +517,7 @@ public class SoftKeyboard extends InputMethodService
                 TextEntryState.acceptedTyped(mComposing);
 
             }
-            updateSuggestions();
+           // updateSuggestions();
         }
     }
 
@@ -672,7 +673,7 @@ public class SoftKeyboard extends InputMethodService
                     (mJustRevertedSeparator == null 
                             || mJustRevertedSeparator.length() == 0 
                             || mJustRevertedSeparator.charAt(0) != primaryCode)) {
-                pickDefaultSuggestion();
+             //   pickDefaultSuggestion();
                 pickedDefault = true;
             } else {
                 commitTyped(ic);
@@ -758,7 +759,7 @@ public class SoftKeyboard extends InputMethodService
         return isPredictionOn() && mShowSuggestions;
     }
 
-    private void updateSuggestions() {
+  /*  private void updateSuggestions() {
         if (!mPredicting) {
             mCandidateView.setSuggestions(null, false, false, false);
             return;
@@ -767,9 +768,9 @@ public class SoftKeyboard extends InputMethodService
         CharSequence typedWord = mWord.getTypedWord();
         // If we're in basic correct
     setCandidatesViewShown(isCandidateStripVisible() || mCompletionOn);
-    }
+    }*/
 
-    private void pickDefaultSuggestion() {
+   /* private void pickDefaultSuggestion() {
         // Complete any pending candidate query first
         if (mHandler.hasMessages(MSG_UPDATE_SUGGESTIONS)) {
             mHandler.removeMessages(MSG_UPDATE_SUGGESTIONS);
@@ -782,9 +783,9 @@ public class SoftKeyboard extends InputMethodService
             mJustAccepted = true;
             pickSuggestion(mBestWord);
         }
-    }
+    }*/
 
-    public void pickSuggestionManually(int index, CharSequence suggestion) {
+   /* public void pickSuggestionManually(int index, CharSequence suggestion) {
         if (mCompletionOn && mCompletions != null && index >= 0
                 && index < mCompletions.length) {
             CompletionInfo ci = mCompletions[index];
@@ -808,9 +809,9 @@ public class SoftKeyboard extends InputMethodService
         }
         // Fool the state watcher so that a subsequent backspace will not do a revert
         TextEntryState.typedCharacter((char) KEYCODE_SPACE, true);
-    }
+    }*/
     
-    private void pickSuggestion(CharSequence suggestion) {
+  /*  private void pickSuggestion(CharSequence suggestion) {
     	if (mCapsLock) {
             suggestion = suggestion.toString().toUpperCase();
         } else if (preferCapitalization() 
@@ -834,7 +835,7 @@ public class SoftKeyboard extends InputMethodService
             mCandidateView.setSuggestions(null, false, false, false);
         }
         updateShiftKeyState(getCurrentInputEditorInfo());
-    }
+    }*/
 
     private boolean isCursorTouchingWord() {
         InputConnection ic = getCurrentInputConnection();
@@ -1101,6 +1102,7 @@ public class SoftKeyboard extends InputMethodService
         for (int i = 0; i < CPS_BUFFER_SIZE; i++) total += mCpsIntervals[i];
         System.out.println("CPS = " + ((CPS_BUFFER_SIZE * 1000f) / total));
     }
+/*
 
     @Override
     public void onUpdateSelection(int oldSelStart, int oldSelEnd,
@@ -1143,6 +1145,7 @@ public class SoftKeyboard extends InputMethodService
         mJustAccepted = false;
 
     }
+*/
 
     private void printComposing()
     {

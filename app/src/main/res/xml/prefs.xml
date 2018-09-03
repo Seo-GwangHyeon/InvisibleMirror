@@ -45,8 +45,8 @@
 		android:entryValues="@array/pref_skin_values"
 		android:dialogTitle="@string/select_skin"
         />
-        
-    <PreferenceCategory
+
+<!--    <PreferenceCategory
             android:title="@string/prediction_category"
             android:key="prediction_settings">
 
@@ -74,6 +74,6 @@
             android:defaultValue="true"
             android:dependency="show_suggestions"
             />
-            
-    </PreferenceCategory>            
+
+    </PreferenceCategory>-->
 </PreferenceScreen>

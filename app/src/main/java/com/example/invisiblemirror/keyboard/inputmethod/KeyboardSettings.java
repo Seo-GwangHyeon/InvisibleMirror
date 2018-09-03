@@ -32,13 +32,13 @@ public class KeyboardSettings extends PreferenceActivity
 	implements Preference.OnPreferenceChangeListener{
     
     private static final String QUICK_FIXES_KEY = "quick_fixes";
-    private static final String SHOW_SUGGESTIONS_KEY = "show_suggestions";
-    private static final String PREDICTION_SETTINGS_KEY = "prediction_settings";
+   // private static final String SHOW_SUGGESTIONS_KEY = "show_suggestions";
+   // private static final String PREDICTION_SETTINGS_KEY = "prediction_settings";
     private static final String PREF_SELECT_SKIN = "select_skin";
     //private static final String SHOW_SUGGESTIONS_KEY = "show_suggestions";
     
     private CheckBoxPreference mQuickFixes;
-    private CheckBoxPreference mShowSuggestions;
+//    private CheckBoxPreference mShowSuggestions;
     private ListPreference mSelectSkin;
     
     @Override
@@ -46,7 +46,7 @@ public class KeyboardSettings extends PreferenceActivity
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.prefs);
         mQuickFixes = (CheckBoxPreference) findPreference(QUICK_FIXES_KEY);
-        mShowSuggestions = (CheckBoxPreference) findPreference(SHOW_SUGGESTIONS_KEY);
+     //   mShowSuggestions = (CheckBoxPreference) findPreference(SHOW_SUGGESTIONS_KEY);
         mSelectSkin = (ListPreference) findPreference(PREF_SELECT_SKIN);
         
         mSelectSkin.setOnPreferenceChangeListener(this);
@@ -56,12 +56,12 @@ public class KeyboardSettings extends PreferenceActivity
     protected void onResume() {
         super.onResume();
         int autoTextSize = AutoText.getSize(getListView());
-        if (autoTextSize < 1) {
+     /*   if (autoTextSize < 1) {
             ((PreferenceGroup) findPreference(PREDICTION_SETTINGS_KEY))
                 .removePreference(mQuickFixes);
         } else {
             mShowSuggestions.setDependency(QUICK_FIXES_KEY);
-        }
+        }*/
         
         String val = mSelectSkin.getValue();
         setSkinPreferenceSummary(val);

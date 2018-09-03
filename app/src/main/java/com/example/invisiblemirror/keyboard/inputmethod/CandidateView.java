@@ -394,7 +394,7 @@ public class CandidateView extends View {
                         TextEntryState.acceptedSuggestion(mSuggestions.get(0),
                                 mSelectedString);
                     }
-                    mService.pickSuggestionManually(mSelectedIndex, mSelectedString);
+                  //  mService.pickSuggestionManually(mSelectedIndex, mSelectedString);
                     mSelectedString = null;
                     mSelectedIndex = -1;
                 }
@@ -408,7 +408,7 @@ public class CandidateView extends View {
                         TextEntryState.acceptedSuggestion(mSuggestions.get(0),
                                 mSelectedString);
                     }
-                    mService.pickSuggestionManually(mSelectedIndex, mSelectedString);
+                 /*   mService.pickSuggestionManually(mSelectedIndex, mSelectedString);*/
                 }
             }
             mSelectedString = null;
@@ -434,7 +434,7 @@ public class CandidateView extends View {
             if (!mShowingCompletions) {
                 TextEntryState.acceptedSuggestion(mSuggestions.get(0), mSelectedString);
             }
-            mService.pickSuggestionManually(mSelectedIndex, mSelectedString);
+            /*mService.pickSuggestionManually(mSelectedIndex, mSelectedString);*/
         }
         invalidate();
         mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_REMOVE_THROUGH_PREVIEW), 200);
